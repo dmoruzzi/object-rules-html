@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Rules - Make Manifest</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Object Rules</h1>
+        <label for="inputField">Entry:</label>
+        <textarea id="inputField" rows="4" placeholder="Enter your input here..."></textarea>
+
+        <label for="taskField">Task:</label>
+        <input type="text" id="taskField" placeholder="Enter your task here...">
+
+        <pre><span id="git_checkout_branch"></span> <span id="release_branch"></span></pre>
+        <pre><div id="sfdx_retrieve">sf project retrieve start -x manifest/package.xml</div></pre>
+        <pre><div id="git_stage">git add */<span id="objectName"></span>.*</div></pre>
+        <pre><div id="git_commit">git commit -m "<span id="ab_msg"></span>"</div></pre>
+        <pre><div id="git_push">git push origin <span id="git_branch"></span></div></pre>
+
+        <pre><div id="package" class="output"></div></pre>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
