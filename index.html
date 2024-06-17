@@ -17,12 +17,27 @@
         <input type="text" id="taskField" placeholder="Enter your task here...">
 
         <pre><span id="git_checkout_branch"></span> <span id="release_branch"></span></pre>
-        <pre><div id="sfdx_retrieve">sf project retrieve start -x manifest/package.xml</div></pre>
-        <pre><div id="git_stage">git add */<span id="objectName"></span>.*</div></pre>
-        <pre><div id="git_commit">git commit -m "<span id="ab_msg"></span>"</div></pre>
-        <pre><div id="git_push">git push origin <span id="git_branch"></span></div></pre>
+        <pre><div id="sfdx_retrieve">sfdx force:source:retrieve -x manifest/package.xml</div></pre>
+        <pre><div id="git_stage">git add */<span id="objectName_ft"></span>.*</div></pre>
+        <pre><div id="git_commit">git commit -m "<span id="ab_msg_ft"></span>"</div></pre>
+        <pre><div id="git_push">git push origin <span id="git_branch_ft"></span></div></pre>
 
         <pre><div id="package" class="output"></div></pre>
+        <h2>Promotional INT</h2>
+        <pre><div id="merge_promo_int">git checkout -b <span id="git_branch_int"></span>_promotional_INT <span id="git_branch_int2"></span></div></pre>
+        <pre><div id="merge_promo_into_int">git merge origin/int</div></pre>
+        <pre><div id="redownload_int">sfdx force:source:retrieve -x manifest/package.xml</div></pre>
+        <pre><div id="git_stage">git add */<span id="objectName_int"></span>.*</div></pre>
+        <pre><div id="git_commit">git commit -m "<span id="ab_msg_int"></span>"</div></pre>
+        <pre><div id="git_push_int">git push origin <span id="git_branch_int3"></span>_promotional_INT</div></pre>
+        <h2>Promotional QA</h2>
+        <pre><div id="merge_promo_qa">git checkout -b <span id="git_branch_qa"></span>_promotional_QA <span id="git_branch_qa2"></span></div></pre>
+        <pre><div id="merge_promo_into_qa">git merge origin/qa</div></pre>
+        <pre><div id="redownload_int">sfdx force:source:retrieve -x manifest/package.xml</div></pre>
+        <pre><div id="git_stage">git add */<span id="objectName_qa"></span>.*</div></pre>
+        <pre><div id="git_commit">git commit -m "<span id="ab_msg_qa"></span>"</div></pre>
+        <pre><div id="git_push_qa">git push origin <span id="git_branch_qa3"></span>_promotional_INT</div></pre>
+
     </div>
 
     <script src="app.js"></script>
