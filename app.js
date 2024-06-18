@@ -119,8 +119,9 @@ function updateOutput() {
 }
 
 function extractFeatureOrBugId(input) {
-  const match = input.match(/Feature\/Bug:\s*(\S+)/);
-  return match ? match[1].split("/").filter(Boolean).pop() : null;
+  let match = input.match(/Feature\/Bug:\s*(\S+)/);
+  match = match ? match[1].split("/").filter(Boolean).pop() : null;
+  return match && !isNaN(match) ? match : null;
 }
 
 function generateRulesXml(rules, objectName) {
@@ -138,9 +139,9 @@ function generateBranchName(objectName, featureId, taskValue) {
     .toUpperCase()
     .replace(/[^A-Z0-9]/g, "");
 
-  if (featureId && !isNaN(featureId) && taskValue) {
+  if (featureId && taskValue) {
     return `feature/ft-${featureId}-${shortObjectName}-${taskValue}`;
-  } else if (featureId && !isNaN(featureId)) {
+  } else if (featureId && (!taskValue)) {
     return `feature/ft-${featureId}-${shortObjectName}-${Date.now()}`;
   } else if (taskValue) {
     return `feature/${shortObjectName}-${taskValue}`;
