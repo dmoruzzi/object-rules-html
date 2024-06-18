@@ -1,6 +1,14 @@
 const DEFAULT_OBJECT = "OBJECT_Rules";
 const DEFAULT_RELEASE = "release_V1.0.0";
 
+/*
+localStorage.setItem("object", "OBJECT_Rules"); // Object Name
+localStorage.setItem("defaultOrg", ""); // SFDC Org Alias
+localStorage.setItem("personalId", ""); // WorkItem ID
+localStorage.setItem("release", ""); // release branch
+
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
   initializeLocalStorageValues();
   initializeEventListeners();
@@ -72,8 +80,10 @@ function getStoredObject() {
 }
 
 function updateOutput() {
+  personalId = localStorage.getItem("personalId") || "";
+
   const inputValue = document.getElementById("inputField").value;
-  const taskValue = document.getElementById("taskField").value;
+  const taskId = document.getElementById("taskField").value;
   const objectName = getStoredObject();
   const featureId = extractFeatureOrBugId(inputValue);
 
@@ -94,10 +104,10 @@ function updateOutput() {
 
   document.getElementById("package").textContent = packageXml;
 
-  console.log(`featureId: ${featureId} & taskId: ${taskValue}`);
   const commitMessage = [
     featureId && `AB#${featureId}`,
-    taskValue && `AB#${taskValue}`,
+    taskId && `AB#${taskId}`,
+    personalId && `AB#${personalId}`,
     objectName.replace(/_/g, " "),
   ]
     .filter(Boolean)
@@ -106,7 +116,7 @@ function updateOutput() {
     .querySelectorAll("#commitMsgFt, #commitMsgInt, #commitMsgQa")
     .forEach((el) => (el.textContent = commitMessage));
 
-  const branchName = generateBranchName(objectName, featureId, taskValue);
+  const branchName = generateBranchName(objectName, featureId, taskId);
   document
     .querySelectorAll(
       "#gitBranch, #gitBranchFt, #gitBranchInt, #gitBranchQa, #gitBranchInt2, #gitBranchQa2, #gitBranchInt3, #gitBranchQa3"
